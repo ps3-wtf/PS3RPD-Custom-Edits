@@ -308,14 +308,14 @@ class GatherDetails:
 
     def get_PS3_image(
         self,
-    ):  # can use psimg.db if present, otherwise try gametdb before falling back on Discord dev app
+    ):  # can use psimg.db if present, otherwise try aldo's title db before falling back on Discord dev app
         self.image = self.titleID.lower()  # by default set titleID as image name for Discord developer application (must be lowercase)
         if os.path.isfile(
             "psimg.db"
         ):  # test if database is in same directory as script
             self.image = self.use_local_db()
-        else:  # attempt to get image from GameTDB
-            self.image = self.use_gametdb()
+        else:  # attempt to get image from Aldo's Title DB
+            self.image = self.use_aldotitledb()
         print(f"get_PS3_image():    {self.image}")
 
     def use_local_db(
@@ -342,7 +342,7 @@ class GatherDetails:
             print("using psimg.db")
             return imgName
 
-    def use_gametdb(self):  # Original idea from AndreCox
+    def use_aldotitledb(self):  # Original idea from AndreCox
         region_map = {  # this needs further testing
             "A": "ZH",  # ?
             "E": "EN",
@@ -356,18 +356,18 @@ class GatherDetails:
         )  # feed region_map 3rd char of titleID. use get() to handle unexpected keys
         if not val:
             print(
-                f"! use_gametdb(): Unexpected key: {self.titleID[2]} ! \nFalling back to Discord dev app images"
+                f"! use_aldotitledb(): Unexpected key: {self.titleID[2]} ! \nFalling back to Discord dev app images"
             )
             return self.titleID.lower()  # bandaid fix, use Discord dev app
         else:
-            url = f"https://art.gametdb.com/ps3/cover/{val}/{self.titleID}.jpg"  # build URL
+            url = f"https://raw.githubusercontent.com/aldostools/resources/master/COV/{self.titleID}.jpg"  # build URL
             status = requests.get(url)
             if status.status_code == 200:  # test if page exists
-                print("using GameTDB")
+                print("using Aldo's Title DB")
                 return url
             else:
                 print(
-                    f"use_gametdb(): no image found at {url}, using Discord dev app image"
+                    f"use_aldotitledb(): no image found at {url}, using Discord dev app image"
                 )
                 return self.titleID.lower()  # bandaid fix, use Discord dev app
 
