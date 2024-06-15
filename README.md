@@ -3,6 +3,9 @@ Discord Rich Presence script for PS3 consoles on HFW&HEN or CFW.
 
 Display what you are playing on your PS3 via Discord's game activity.
 
+## Mods by ps3.wtf
+- Aldo's Title DB instead of GameTDB.
+
 ## Display Example
 <table>
 	<tr>
@@ -30,7 +33,7 @@ As far as I know, there is nothing I can do to fix this.
 
 
 ## Contact Me
-Contact me via Discord: "zorua98741"/"zorua98741#0023".
+Contact me via Discord: "zorua98741"/"zorua98741#0023".<br>Mod Developer: "therealautoimi"
 
 ## Limitations
 * __A PC must be used to display presence, there is no way to install and use this script solely on the PS3__
